@@ -1,0 +1,35 @@
+{
+  "name": "first-match-wins-exclude-later",
+  "description": "先にマッチした component が勝つ。後ろの exclude には届かない",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/a/*"
+            },
+            {
+              "/": "/a/secret",
+              "exclude": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/a/secret",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/a/other",
+      "expect": "app"
+    }
+  ]
+}

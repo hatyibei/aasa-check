@@ -1,0 +1,31 @@
+{
+  "name": "no-slash-pattern",
+  "description": "\"abc\" は \"/abc\" として扱う",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "abc"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/abc",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/abcd",
+      "expect": "web"
+    }
+  ]
+}

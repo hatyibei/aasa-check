@@ -1,0 +1,43 @@
+{
+  "name": "subst-food",
+  "description": "カスタム置換変数",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "substitutionVariables": {
+        "food": [
+          "burrito",
+          "pizza",
+          "sushi"
+        ]
+      },
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/$(food)/"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/pizza/",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/taco/",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/pizza",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2): pattern /$(food)/ matches /pizza. trailing '/' optional, undocumented"
+    }
+  ]
+}

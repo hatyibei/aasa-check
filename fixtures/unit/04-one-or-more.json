@@ -1,0 +1,35 @@
+{
+  "name": "one-or-more",
+  "description": "?* は 1 文字以上",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/docs/?*"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/docs/",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/docs/a",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/docs",
+      "expect": "web"
+    }
+  ]
+}

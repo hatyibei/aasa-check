@@ -1,0 +1,40 @@
+{
+  "name": "exclude-order",
+  "description": "先の exclude が勝つ。/help/website は /help/website/* に入らない",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/help/website/*",
+              "exclude": true
+            },
+            {
+              "/": "/help/*"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/help/website/x",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/help/other",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/help/website",
+      "expect": "web",
+      "note": "observed via swcutil (macOS 26.6.2): exclude /help/website/* blocks /help/website. trailing '/' optional, undocumented"
+    }
+  ]
+}

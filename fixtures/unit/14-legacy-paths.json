@@ -1,0 +1,35 @@
+{
+  "name": "legacy-paths",
+  "description": "レガシー paths と NOT",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "paths": [
+            "NOT /account/*",
+            "/products/*",
+            "*"
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/account/x",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/products/1",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/other",
+      "expect": "app"
+    }
+  ]
+}

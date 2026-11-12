@@ -1,0 +1,34 @@
+{
+  "name": "components-win-over-paths",
+  "description": "同じ details に両方あれば components だけ",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/only-new"
+            }
+          ],
+          "paths": [
+            "/*"
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/only-new",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/old",
+      "expect": "web"
+    }
+  ]
+}

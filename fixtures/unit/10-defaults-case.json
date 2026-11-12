@@ -1,0 +1,34 @@
+{
+  "name": "defaults-case",
+  "description": "defaults.caseSensitive=false を継承",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "defaults": {
+        "caseSensitive": false
+      },
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/Help/*"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/help/x",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/Help/x",
+      "expect": "app"
+    }
+  ]
+}

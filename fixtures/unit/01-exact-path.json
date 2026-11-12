@@ -1,0 +1,40 @@
+{
+  "name": "exact-path",
+  "description": "\"/\": \"/buy\" は /buy だけに完全一致",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/buy"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/buy",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/buy/",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2): pattern /buy matches /buy/. trailing '/' optional, undocumented"
+    },
+    {
+      "url": "https://example.com/buy/x",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/other",
+      "expect": "web"
+    }
+  ]
+}

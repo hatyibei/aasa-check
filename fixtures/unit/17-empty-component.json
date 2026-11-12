@@ -1,0 +1,35 @@
+{
+  "name": "empty-component",
+  "description": "キー無しの component は全部にマッチ",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "comment": "all"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/anything/at/all",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/x?y=1#z",
+      "expect": "app"
+    }
+  ]
+}

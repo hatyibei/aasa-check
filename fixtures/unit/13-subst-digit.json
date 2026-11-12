@@ -1,0 +1,35 @@
+{
+  "name": "subst-digit",
+  "description": "$(digit)",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/id/$(digit)$(digit)$(digit)"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/id/042",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/id/42",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/id/042a",
+      "expect": "web"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "subst-lang-region",
+  "description": "組み込み $(lang) / $(region)",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "substitutionVariables": {
+        "food": [
+          "burrito",
+          "pizza",
+          "sushi"
+        ]
+      },
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/$(lang)_$(region)/$(food)/"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/en_US/pizza/",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/zz_US/pizza/",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/en_XX/pizza/",
+      "expect": "web"
+    }
+  ]
+}

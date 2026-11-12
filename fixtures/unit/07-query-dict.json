@@ -1,0 +1,43 @@
+{
+  "name": "query-dict",
+  "description": "? が辞書なら各キーの項目がすべてマッチ。余分な項目は無視",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/help/*",
+              "?": {
+                "articleNumber": "????",
+                "articleName": "?*"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/help/a?articleNumber=1234&articleName=hello",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/help/a?articleNumber=123&articleName=hello",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/help/a?articleNumber=1234",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/help/a?articleNumber=1234&articleName=hello&extra=1",
+      "expect": "app"
+    }
+  ]
+}

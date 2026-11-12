@@ -1,0 +1,40 @@
+{
+  "name": "wildcard-prefix",
+  "description": "* は 0 文字以上",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/buy/*"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/buy/",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/buy/123",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/buy",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2): pattern /buy/* matches /buy. trailing '/' optional, undocumented"
+    },
+    {
+      "url": "https://example.com/buyer/1",
+      "expect": "web"
+    }
+  ]
+}

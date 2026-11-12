@@ -1,0 +1,29 @@
+name: aasa-check
+description: Match URLs against an apple-app-site-association file and compare it with Apple's CDN copy.
+author: aasa-check contributors
+inputs:
+  domain:
+    description: Domain to check (optional; domain in the test file takes precedence)
+    required: false
+    default: ""
+  test-file:
+    description: Path to links.test.yml, relative to the workspace
+    required: false
+    default: links.test.yml
+  aasa-file:
+    description: Local AASA JSON (optional; if omitted, the file is fetched from the domain)
+    required: false
+    default: ""
+  no-cdn:
+    description: "If true, skip the Apple CDN comparison"
+    required: false
+    default: "false"
+outputs:
+  exit-code:
+    description: "0 = OK, 1 = match failure or error, 2 = CDN mismatch"
+runs:
+  using: node20
+  main: dist/index.cjs
+branding:
+  icon: link
+  color: blue

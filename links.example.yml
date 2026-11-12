@@ -1,0 +1,18 @@
+# Example test file for `aasa-check check`
+domain: example.com             # optional; takes precedence over --domain
+appID: ABCD123456.com.example.app  # optional; when set, only this app's details are used
+cases:
+  - url: https://example.com/buy/123
+    expect: app                 # app | open | true  = should open in the app
+  - url: https://example.com/help/website/x
+    expect: web                 # web | exclude | false = should not open in the app
+  - url: https://example.com/help/x?articleNumber=1234
+    expect: app
+  - url: https://example.com/help/x?articleNumber=12
+    expect: web
+  - url: https://example.com/buy/1#no_universal_links
+    expect: exclude
+  - url: https://example.com/ja_JP/sushi/
+    expect: open
+  - url: https://example.com/about
+    expect: false

@@ -1,0 +1,104 @@
+{
+  "name": "slash-discrimination",
+  "description": "連続スラッシュの畳み（仮説 b）を切り分けるフィクスチャ。3 回目の swcutil（macOS 26.6.2）で `/a//b`・`/a//b/` vs `/a/b`、`//buy` vs `/buy`、`/p//1234` vs `/p/????` が MATCHED となり、仮説 b が確認された。全件検証済み。",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.ab"
+          ],
+          "components": [
+            {
+              "/": "/a/b"
+            }
+          ]
+        },
+        {
+          "appIDs": [
+            "ABCD123456.com.example.buy"
+          ],
+          "components": [
+            {
+              "/": "/buy"
+            }
+          ]
+        },
+        {
+          "appIDs": [
+            "ABCD123456.com.example.buypat"
+          ],
+          "components": [
+            {
+              "/": "/buy//"
+            }
+          ]
+        },
+        {
+          "appIDs": [
+            "ABCD123456.com.example.qq"
+          ],
+          "components": [
+            {
+              "/": "/p/????"
+            }
+          ]
+        },
+        {
+          "appIDs": [
+            "ABCD123456.com.example.star"
+          ],
+          "components": [
+            {
+              "/": "/a/*/b"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/buy///",
+      "appID": "ABCD123456.com.example.buy",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /buy matches /buy///"
+    },
+    {
+      "url": "https://example.com/a//b",
+      "appID": "ABCD123456.com.example.ab",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /a/b matches /a//b (consecutive slashes collapsed)"
+    },
+    {
+      "url": "https://example.com/a//b/",
+      "appID": "ABCD123456.com.example.ab",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /a/b matches /a//b/ (collapse then strip trailing slash)"
+    },
+    {
+      "url": "https://example.com//buy",
+      "appID": "ABCD123456.com.example.buy",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /buy matches //buy (leading // collapsed)"
+    },
+    {
+      "url": "https://example.com/a//b/",
+      "appID": "ABCD123456.com.example.star",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /a/*/b matches /a//b/"
+    },
+    {
+      "url": "https://example.com/p//1234",
+      "appID": "ABCD123456.com.example.qq",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /p/???? matches /p//1234 (collapsed to /p/1234)"
+    },
+    {
+      "url": "https://example.com/buy",
+      "appID": "ABCD123456.com.example.buypat",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /buy// matches URL /buy (pattern slashes collapsed/stripped)"
+    }
+  ]
+}

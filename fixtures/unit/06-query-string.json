@@ -1,0 +1,40 @@
+{
+  "name": "query-string",
+  "description": "? が文字列ならクエリ全体を照合",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/abc",
+              "?": "def"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/abc?def",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/abc",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/abc?def=1",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/?def",
+      "expect": "web"
+    }
+  ]
+}

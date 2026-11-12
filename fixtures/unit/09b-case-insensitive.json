@@ -1,0 +1,32 @@
+{
+  "name": "case-insensitive",
+  "description": "component の caseSensitive: false",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/Sourdough/?*",
+              "caseSensitive": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/Sourdough/x",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/sourdough/x",
+      "expect": "app"
+    }
+  ]
+}

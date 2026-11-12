@@ -1,0 +1,20 @@
+{
+  "applinks": {
+    "defaults": { "caseSensitive": true, "percentEncoded": true },
+    "substitutionVariables": {
+      "food": ["burrito", "pizza", "sushi"]
+    },
+    "details": [
+      {
+        "appIDs": ["ABCD123456.com.example.app"],
+        "components": [
+          { "#": "no_universal_links", "exclude": true, "comment": "Exclude by fragment" },
+          { "/": "/help/website/*", "exclude": true, "comment": "Exclude the website version of help" },
+          { "/": "/buy/*" },
+          { "/": "/help/*", "?": { "articleNumber": "????" } },
+          { "/": "/$(lang)_$(region)/$(food)/" }
+        ]
+      }
+    ]
+  }
+}

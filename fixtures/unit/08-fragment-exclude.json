@@ -1,0 +1,39 @@
+{
+  "name": "fragment-exclude",
+  "description": "# で除外",
+  "appID": "ABCD123456.com.example.app",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "#": "no_universal_links",
+              "exclude": true
+            },
+            {
+              "/": "*"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/x#no_universal_links",
+      "expect": "web"
+    },
+    {
+      "url": "https://example.com/x",
+      "expect": "app"
+    },
+    {
+      "url": "https://example.com/x#other",
+      "expect": "app"
+    }
+  ]
+}

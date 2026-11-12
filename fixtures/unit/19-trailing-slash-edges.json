@@ -1,0 +1,81 @@
+{
+  "name": "trailing-slash-edges",
+  "description": "末尾スラッシュと途中の連続スラッシュ。71 ケース中、このファイルの 9 件は macOS 26.6.2 の swcutil で検証済み。",
+  "aasa": {
+    "applinks": {
+      "details": [
+        {
+          "appIDs": [
+            "ABCD123456.com.example.app"
+          ],
+          "components": [
+            {
+              "/": "/abc",
+              "?": "def",
+              "comment": "query + path trailing slash"
+            },
+            {
+              "/": "/a/*/b"
+            },
+            {
+              "/": "/z/*/w/"
+            },
+            {
+              "/": "/buy"
+            },
+            {
+              "/": "/star/*"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "url": "https://example.com/buy//",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /buy matches /buy//"
+    },
+    {
+      "url": "https://example.com/buy/x",
+      "expect": "web",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /buy does not match /buy/x"
+    },
+    {
+      "url": "https://example.com/a/foo/b/",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /a/*/b matches /a/foo/b/"
+    },
+    {
+      "url": "https://example.com/a/foo/b",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /a/*/b matches /a/foo/b"
+    },
+    {
+      "url": "https://example.com/z/foo/w",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /z/*/w/ matches /z/foo/w"
+    },
+    {
+      "url": "https://example.com/a/foo/b/c",
+      "expect": "web",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /a/*/b does not match /a/foo/b/c"
+    },
+    {
+      "url": "https://example.com/abc/?def",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): query still matches when the path has a trailing slash"
+    },
+    {
+      "url": "https://example.com/abc/?def=1",
+      "expect": "web",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): optional path slash does not relax the query pattern"
+    },
+    {
+      "url": "https://example.com/star//",
+      "expect": "app",
+      "note": "observed via swcutil (macOS 26.6.2, 3rd run): pattern /star/* matches /star//"
+    }
+  ]
+}

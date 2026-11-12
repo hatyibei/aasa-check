@@ -1,0 +1,7 @@
+node_modules/
+ground-truth/
+.DS_Store
+*.tgz
+*.log
+.idea/
+.vscode/
