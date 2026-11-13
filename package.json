@@ -10,7 +10,7 @@
     "build": "npm run build:cli && npm run build:action",
     "build:cli": "esbuild src/cli.ts --bundle --platform=node --format=cjs --outfile=dist/cli.cjs --banner:js=\"#!/usr/bin/env node\"",
     "build:action": "esbuild src/action.ts --bundle --platform=node --format=cjs --outfile=dist/index.cjs",
-    "test": "node --import tsx --test \"test/**/*.test.ts\"",
+    "test": "node --import tsx --test test/*.test.ts",
     "start": "node dist/cli.cjs",
     "typecheck": "tsc --noEmit",
     "fixtures": "node dist/cli.cjs fixtures --dir fixtures/unit"
