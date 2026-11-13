@@ -1,7 +1,7 @@
 # aasa-check
 
 > [!NOTE]
-> Licensed under Apache-2.0. The GitHub repository and npm package have **not been published yet**. The snippets below are the intended usage once they are.
+> Licensed under Apache-2.0. Distributed through GitHub (Action and CLI); not published on npm.
 
 [日本語版 README はこちら / Japanese README](README.ja.md)
 
@@ -35,10 +35,9 @@ JSON AASA only. The old signed (PKCS#7) format is out of scope.
 
 ## Quick start
 
-### GitHub Action (intended usage)
+### GitHub Action
 
 ```yaml
-# The GitHub repository has not been created yet.
 - uses: hatyibei/aasa-check@v1
   with:
     test-file: links.test.yml
@@ -64,7 +63,7 @@ On exit code `2` (CDN mismatch) the action prints a `::warning::` and the step s
 
 ```yaml
 - id: aasa
-  uses: hatyibei/aasa-check@v1   # not published yet
+  uses: hatyibei/aasa-check@v1
   continue-on-error: true
   with:
     domain: example.com
@@ -78,18 +77,18 @@ The action runs a prebuilt bundle (`dist/index.cjs`) on Node 20. Callers do not 
 
 ### CLI
 
-Requires Node.js 20 or later. Once the package is on npm:
+Requires Node.js 20 or later. The package is not on npm; run it straight from GitHub (pin a tag for reproducible runs):
 
 ```sh
-npx aasa-check check --test-file links.test.yml
+npx github:hatyibei/aasa-check#v1 check --test-file links.test.yml
 # or
-npm i -D aasa-check
+npm i -D github:hatyibei/aasa-check#v1
 ```
 
 From a git checkout:
 
 ```sh
-git clone https://github.com/hatyibei/aasa-check.git   # repository not created yet
+git clone https://github.com/hatyibei/aasa-check.git
 cd aasa-check
 npm ci
 npm run build

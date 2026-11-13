@@ -1,7 +1,7 @@
 # aasa-check
 
 > [!NOTE]
-> ライセンスは Apache-2.0 です。GitHub リポジトリと npm パッケージは**まだ公開していません**。下の例は、公開したあとの使い方です。
+> ライセンスは Apache-2.0 です。GitHub で配布しています（Action と CLI）。npm には公開していません。
 
 [English README](README.md)
 
@@ -35,10 +35,9 @@ Apple の検証ツール `swcutil verify` は Mac 専用で root 権限も要る
 
 ## クイックスタート
 
-### GitHub Action（予定している使い方）
+### GitHub Action
 
 ```yaml
-# GitHub リポジトリはまだ作成していません。
 - uses: hatyibei/aasa-check@v1
   with:
     test-file: links.test.yml
@@ -64,7 +63,7 @@ Apple の検証ツール `swcutil verify` は Mac 専用で root 権限も要る
 
 ```yaml
 - id: aasa
-  uses: hatyibei/aasa-check@v1   # まだ公開していません
+  uses: hatyibei/aasa-check@v1
   continue-on-error: true
   with:
     domain: example.com
@@ -78,18 +77,18 @@ Action はビルド済みの `dist/index.cjs` を Node 20 で実行します。�
 
 ### CLI
 
-Node.js 20 以上が必要です。npm に公開したあとは次のように使います。
+Node.js 20 以上が必要です。npm には公開していないので、GitHub から直接実行します（再現性のためタグを固定してください）。
 
 ```sh
-npx aasa-check check --test-file links.test.yml
+npx github:hatyibei/aasa-check#v1 check --test-file links.test.yml
 # または
-npm i -D aasa-check
+npm i -D github:hatyibei/aasa-check#v1
 ```
 
 git のチェックアウトから使う場合:
 
 ```sh
-git clone https://github.com/hatyibei/aasa-check.git   # リポジトリはまだ作成していません
+git clone https://github.com/hatyibei/aasa-check.git
 cd aasa-check
 npm ci
 npm run build
