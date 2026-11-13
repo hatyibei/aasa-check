@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run fixtures
+      - name: Check dist/ is up to date
+        run: git diff --exit-code -- dist
+      - name: Run bundled action entry locally
+        env:
+          INPUT_TEST_FILE: links.example.yml
+          INPUT_AASA_FILE: examples/apple-app-site-association.json
+          INPUT_NO_CDN: "true"
+          GITHUB_OUTPUT: ${{ runner.temp }}/aasa-output.txt
+        run: |
+          node dist/index.cjs
+          grep -qx 'exit-code=0' "$GITHUB_OUTPUT"
