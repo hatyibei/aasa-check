@@ -73,7 +73,7 @@ On exit code `2` (CDN mismatch) the action prints a `::warning::` and the step s
   run: exit 1
 ```
 
-The action runs a prebuilt bundle (`dist/index.cjs`) on Node 20. Callers do not need to install dependencies or compile TypeScript.
+The action runs a prebuilt bundle (`dist/index.cjs`) on Node 24. Callers do not need to install dependencies or compile TypeScript.
 
 ### CLI
 

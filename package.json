@@ -1,6 +1,6 @@
 {
   "name": "aasa-check",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Check iOS Universal Links AASA files in CI: match URLs against applinks patterns and compare your site's AASA with Apple's CDN copy.",
   "type": "module",
   "bin": {

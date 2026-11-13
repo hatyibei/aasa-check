@@ -22,7 +22,7 @@ outputs:
   exit-code:
     description: "0 = OK, 1 = match failure or error, 2 = CDN mismatch"
 runs:
-  using: node20
+  using: node24
   main: dist/index.cjs
 branding:
   icon: link

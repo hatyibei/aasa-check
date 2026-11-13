@@ -73,7 +73,7 @@ Apple の検証ツール `swcutil verify` は Mac 専用で root 権限も要る
   run: exit 1
 ```
 
-Action はビルド済みの `dist/index.cjs` を Node 20 で実行します。利用側で依存パッケージのインストールや TypeScript のコンパイルは不要です。
+Action はビルド済みの `dist/index.cjs` を Node 24 で実行します。利用側で依存パッケージのインストールや TypeScript のコンパイルは不要です。
 
 ### CLI
 
